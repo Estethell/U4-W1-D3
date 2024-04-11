@@ -8,7 +8,7 @@
 
 // connessione al database
 $host = "localhost";
-$db = "lista_utenti";
+$db = "ifoa_exercises_01";
 $user = "root";
 $pass = "";
 

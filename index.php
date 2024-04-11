@@ -1,4 +1,4 @@
-
+<a href="http://localhost/FSD%20IFOA/U1-S1-L3/?id=1">Pizza 1</a>
 
 
 
@@ -16,7 +16,7 @@
 
 // connessione al database
 $host = "localhost";
-$db = "lista_utenti";
+$db = "ifoa_exercises_01";
 $user = "root";
 $pass = "";
 
@@ -40,7 +40,7 @@ echo "tutto apposto";
 
 // preparazione ed esecuzione della query
 // USIAMO SELECT PER SELEZIONARE TUTTE LE RIGHE
-$stmt = $pdo->query('SELECT * FROM utenti');
+$stmt = $pdo->query('SELECT * FROM Dishes');
 
 // PRODUCIAMO L'HTML
 
@@ -72,10 +72,10 @@ echo "</ul>";
 // execute invece controlla i dati dopo averli preparati
 
 
-$id = $_GET["Id"];
+$id = $_GET["id"]; // Prenderà l'id dall'url   /?id=2
 
 
-$stmt = $pdo->prepare('SELECT * FROM utenti WHERE id = ?');
+$stmt = $pdo->prepare('SELECT * FROM Dishes WHERE id = ?');
 $stmt->execute([$id]);
 $row = $stmt->fetch(2);
 echo "<h2>$row[Name]</h2>";
@@ -83,10 +83,11 @@ echo "<h2>$row[Name]</h2>";
 
 // CON INSERT
 
-$stmt = $pdo -> prepare("INSERT INTO user (Name, Surname, Age) VALUES (:name, :surname, :age)");
+$stmt = $pdo -> prepare("INSERT INTO Dishes (Name, Price) VALUES (:name, :price)");
 
 $stmt->execute([
-    
+    "name" => "Pizza Parmigiana",
+    "price" => "1000",
 ]);
 
 // DELETE
