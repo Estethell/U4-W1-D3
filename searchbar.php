@@ -23,7 +23,7 @@ include __DIR__ . '/includes/navbar.php' ?>
         </div>
     </form>
 
-    <div class="d-flex flex-wrap">
+    <div class="d-flex flex-wrap justify-content-center text-center">
         <?php
             foreach ($stmt as $row) { ?>
                 
