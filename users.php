@@ -114,7 +114,7 @@ $stmt->execute([
         </div>
         <div class="mb-3">
           <label for="age" class="form-label">Age</label>
-          <input type="text" class="form-control" name="age" id="age" />
+          <input type="number" class="form-control" name="age" id="age" />
         </div>
  
 

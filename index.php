@@ -32,31 +32,15 @@ $options = [
 ];
 
 
-// comando che connette al databse
+
 $pdo = new PDO($dsn, $user, $pass, $options);
 
 echo "tutto apposto";
 
 
-// preparazione ed esecuzione della query
-// USIAMO SELECT PER SELEZIONARE TUTTE LE RIGHE
 $stmt = $pdo->query('SELECT * FROM Dishes');
 
-// PRODUCIAMO L'HTML
 
-// LO POSSIAMO FARE O CON UN CICLO WHILE:
-/* echo "<ul>";
-
-while ($row = $stmt->fetch())
-{
-    echo "<li>$row[Name]</li>";
-}
-
-echo "</ul>";
- */
-
-
-// O CON UN CICLO FOREACH
 echo "<ul>";
 
 foreach ($stmt as $row)
@@ -67,12 +51,10 @@ foreach ($stmt as $row)
 echo "</ul>";
 
 
-// VEDIAMO COME SELEZIONARE UNA RIGA SPECIFICA
-// query non controlla nulla, usare se non ci sono valori presi dall'utente
-// execute invece controlla i dati dopo averli preparati
 
 
-$id = $_GET["id"]; // Prenderà l'id dall'url   /?id=2
+
+$id = $_GET["id"]; 
 
 
 $stmt = $pdo->prepare('SELECT * FROM Dishes WHERE id = ?');
@@ -81,7 +63,6 @@ $row = $stmt->fetch(2);
 echo "<h2>$row[Name]</h2>";
 
 
-// CON INSERT
 
 $stmt = $pdo -> prepare("INSERT INTO Dishes (Name, Price) VALUES (:name, :price)");
 
@@ -90,12 +71,12 @@ $stmt->execute([
     "price" => "1000",
 ]);
 
-// DELETE
+
 $stmt = $pdo->prepare("DELETE FROM Dishes WHERE id = ?");
 $stmt->execute([$id]);
 
 
-// UPDATE
+
 $stmt = $pdo->prepare("UPDATE Dishes SET Name = :name  WHERE id = :id");
 $stmt->execute([
     'id' => 16,
